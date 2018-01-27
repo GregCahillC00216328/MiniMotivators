@@ -14,4 +14,5 @@ private:
 	int m_timer = 0;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
+	sf::RectangleShape m_sequenceSquares[5]; //squares used to display sequence/missing kids
 };

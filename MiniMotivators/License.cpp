@@ -21,7 +21,7 @@ void License::update(sf::Time t_deltaTime)
 	}
 }
 
-void License::render(sf::RenderWindow & t_window)
+void License::render(sf::RenderWindow & t_window)//new
 {
 	t_window.clear(sf::Color::Yellow);
 	t_window.draw(m_sprite);

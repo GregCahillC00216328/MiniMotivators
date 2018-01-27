@@ -3,7 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
 
-const int NUM_EXERCISE = 3;
+const int NUM_EXERCISE = 6;
 
 class Lose
 {

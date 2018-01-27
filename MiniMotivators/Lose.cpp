@@ -14,18 +14,22 @@ Lose::~Lose()
 
 void Lose::update(sf::Time t_deltaTime)
 {
+	sf::Sound::Status stat = m_exerciseSounds[m_clipNo].getStatus();
+	if (stat == sf::Sound::Stopped)
+	{
+		m_clipNo = std::rand() % NUM_EXERCISE;
+		m_exerciseSounds[m_clipNo].play();
+
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-
+		Game::m_currentMode = GameMode::MainMenuScreen;
+		m_exerciseSounds[m_clipNo].stop();
 	}
-	sf::Sound::Status stat = m_exerciseSounds[m_clipNo].getStatus();
-
-
-	if ( stat == sf::Sound::Stopped)
-	{
-		m_exerciseSounds[m_clipNo].play();
 	
-	}
+
+
+	
 }
 
 void Lose::render(sf::RenderWindow & t_window)
@@ -46,7 +50,7 @@ void Lose::setup(sf::Font & t_font)
 	
 	for (size_t i = 0; i < NUM_EXERCISE; i++)
 	{
-		if (!m_excercisesAudioBuf[i].loadFromFile("assets//audio//conversation" + std::to_string(i) + ".ogg"))
+		if (!m_excercisesAudioBuf[i].loadFromFile("assets//audio//exercise" + std::to_string(i) + ".ogg"))
 		{
 			std::cout << "problem loading conversation" << std::endl;
 		}		

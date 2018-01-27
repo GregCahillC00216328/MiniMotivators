@@ -168,9 +168,9 @@ void Game::render()
 /// </summary>
 void Game::setupAssets()
 {
-	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\OpenDyslexic-Regular.otf"))
 	{
-		std::cout << "problem loading arial black font" << std::endl;
+		std::cout << "problem loading font" << std::endl;
 	}
 	m_licenseScreen.setup(m_ArialBlackfont);
 	m_splashScreen.setup(m_ArialBlackfont);

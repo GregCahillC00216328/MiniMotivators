@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Credits//credits
+class Credits//credits lol
 {
 public:
 	Credits();

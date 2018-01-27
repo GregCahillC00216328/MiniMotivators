@@ -31,6 +31,6 @@ void GamePlay::setup(sf::Font & t_font)
 		//m_sequenceSquares[i].setTexture()
 
 		m_fatherSquares[i].setSize(sf::Vector2f(50, 50));
-		m_fatherSquares[i].setPosition()
+		//m_fatherSquares[i].setPosition()
 	}
 }

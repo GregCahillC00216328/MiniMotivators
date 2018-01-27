@@ -2,8 +2,6 @@
 
 #include <SFML\Graphics.hpp>
 
-
-
 class Help
 {
 public:

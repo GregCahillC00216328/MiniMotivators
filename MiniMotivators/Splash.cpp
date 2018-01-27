@@ -28,7 +28,7 @@ void Splash::render(sf::RenderWindow & t_window)
 	t_window.display();
 }
 
-void Splash::setup(sf::Font & t_font)
+void Splash::setup(sf::Font & t_font)//k
 {
 	m_font = t_font;
 	m_message.setFillColor(sf::Color::Green);

@@ -29,5 +29,8 @@ void GamePlay::setup(sf::Font & t_font)
 		m_sequenceSquares[i].setFillColor(sf::Color::Red);
 		m_sequenceSquares[i].setPosition(20 + 50 * i, 550);
 		//m_sequenceSquares[i].setTexture()
+
+		m_fatherSquares[i].setSize(sf::Vector2f(50, 50));
+		m_fatherSquares[i].setPosition()
 	}
 }

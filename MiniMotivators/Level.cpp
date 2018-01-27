@@ -47,16 +47,17 @@ void Level::setup(sf::Font & t_font)
 	{
 		std::cout << "error with button file";//error message
 	}
-
+	srand(time(NULL));
 	for (int i = 0; i < 4; i++)
 	{
-		m_mam[i].setSize(sf::Vector2f(40, 40));
-		m_mam[i].setFillColor(sf::Color::Red);
-		m_mam[i].setPosition(20 + 50 * i, 70+50*i);
-
 		m_dad[i].setSize(sf::Vector2f(45, 45));
 		m_dad[i].setFillColor(sf::Color::Blue);
-		m_dad[i].setPosition(70 + 50 * i, 20+50*i);
+		m_dad[i].setPosition(rand()% 700 + 50, rand()%500);
+
+		m_mam[i].setSize(sf::Vector2f(40, 40));
+		m_mam[i].setFillColor(sf::Color::Red);
+		m_mam[i].setPosition(m_dad[i].getPosition().x - 25, m_dad[i].getPosition().y);
+		
 
 		m_kid[i].setSize(sf::Vector2f(60, 80));
 		m_kid[i].setTexture(&m_kidTexture);

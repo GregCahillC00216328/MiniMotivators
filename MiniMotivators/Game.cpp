@@ -86,7 +86,7 @@ void Game::update(sf::Time t_deltaTime)
 		m_splashScreen.update(t_deltaTime);
 		break;
 	case GameMode::MainMenuScreen:
-		m_mainMenuScreen.update(t_deltaTime);
+		m_mainMenuScreen.update(t_deltaTime, m_window);
 		break;
 	case GameMode::HelpScreen:
 		m_helpScreen.update(t_deltaTime);

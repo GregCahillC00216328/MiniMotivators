@@ -11,7 +11,7 @@ Level::~Level()
 
 void Level::update(sf::Time t_deltaTime)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
 	{
 		Game::m_currentMode = GameMode::LoseScreen;
 	}

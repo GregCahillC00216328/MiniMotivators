@@ -103,6 +103,12 @@ void Game::update(sf::Time t_deltaTime)
 	case GameMode::LevelScreen:
 		m_levelScreen.update(t_deltaTime);
 		break;
+	case GameMode::LoseScreen:
+		m_loseScreen.update(t_deltaTime);
+		break;
+	case GameMode::WinScreen:
+		m_winScreen.update(t_deltaTime);
+		break;
 	default:
 		break;
 	}
@@ -144,6 +150,12 @@ void Game::render()
 	case GameMode::LevelScreen:
 		m_levelScreen.render(m_window);
 		break;
+	case GameMode::LoseScreen:
+		m_loseScreen.render(m_window);
+		break;
+	case GameMode::WinScreen:
+		m_winScreen.render(m_window);
+		break;
 	default:
 		break;
 	}
@@ -168,4 +180,6 @@ void Game::setupAssets()
 	m_levelIntroScreen.setup(m_ArialBlackfont);
 	m_optionsScreen.setup(m_ArialBlackfont);
 	m_levelScreen.setup(m_ArialBlackfont);
+	m_loseScreen.setup(m_ArialBlackfont);
+	m_loseScreen.setup(m_ArialBlackfont);
 }

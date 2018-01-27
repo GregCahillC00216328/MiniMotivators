@@ -31,6 +31,7 @@ void Level::render(sf::RenderWindow & t_window)
 		t_window.draw(m_dad[i]);
 		t_window.draw(m_kid[i]);
 		t_window.draw(m_sequenceSquares[i]);
+		t_window.draw(m_shirtSquare[i]);
 	}
 	t_window.display();
 }
@@ -47,6 +48,12 @@ void Level::setup(sf::Font & t_font)
 	{
 		std::cout << "error with button file";//error message
 	}
+
+	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.png"))//load image and check for error
+	{
+		std::cout << "error with button file";//error message
+	}
+
 	srand(time(NULL));
 	for (int i = 0; i < 4; i++)
 	{
@@ -55,15 +62,20 @@ void Level::setup(sf::Font & t_font)
 		m_dad[i].setPosition(rand()% 700 + 50, rand()%500);
 
 		m_mam[i].setSize(sf::Vector2f(40, 40));
+		//m_mam[i].setTexture()
 		m_mam[i].setFillColor(sf::Color::Red);
 		m_mam[i].setPosition(m_dad[i].getPosition().x - 25, m_dad[i].getPosition().y);
-		
 
 		m_kid[i].setSize(sf::Vector2f(60, 80));
 		m_kid[i].setTexture(&m_kidTexture);
 		m_kid[i].setFillColor(sf::Color::Green);
 		m_kid[i].setPosition(0 + 90 * i, 350);
 		
+		m_shirtSquare[i].setSize(sf::Vector2f(30, 40));
+		m_shirtSquare[i].setTexture(&m_shirtTexture);
+		m_shirtSquare[i].setFillColor(sf::Color::Red);
+		m_shirtSquare[i].setPosition(m_kid[i].getPosition().x, m_kid[i].getPosition().y - m_kidSprite.getGlobalBounds().height / 3 * 2);
+
 
 		//m_sequenceSquares[i].setSize(sf::Vector2f(40, 40));
 		//m_sequenceSquares[i].setFillColor(sf::Color::Red);

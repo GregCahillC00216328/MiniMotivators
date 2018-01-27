@@ -14,6 +14,8 @@ private:
 	sf::Text m_message;
 	sf::Sprite m_kidSprite;
 	sf::Texture m_kidTexture;
+	sf::Texture m_shirtTexture;
+
 	sf::RectangleShape m_mam[4];
 	sf::RectangleShape m_dad[4];
 	sf::RectangleShape m_kid[4];
@@ -22,4 +24,5 @@ private:
 	sf::RectangleShape m_fatherSquares[5];
 	sf::RectangleShape m_motherSquares[5];
 	sf::RectangleShape m_childSquares[5];
+	sf::RectangleShape m_shirtSquare[5];
 };

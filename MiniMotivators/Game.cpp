@@ -100,6 +100,9 @@ void Game::update(sf::Time t_deltaTime)
 	case GameMode::CreditsScreen:
 		m_creditsScreen.update(t_deltaTime);
 		break;
+	case GameMode::LevelScreen:
+		m_levelScreen.update(t_deltaTime);
+		break;
 	default:
 		break;
 	}
@@ -138,6 +141,9 @@ void Game::render()
 	case GameMode::CreditsScreen:
 		m_creditsScreen.render(m_window);
 		break;
+	case GameMode::LevelScreen:
+		m_levelScreen.render(m_window);
+		break;
 	default:
 		break;
 	}
@@ -161,5 +167,5 @@ void Game::setupAssets()
 	m_helpScreen.setup(m_ArialBlackfont);
 	m_levelIntroScreen.setup(m_ArialBlackfont);
 	m_optionsScreen.setup(m_ArialBlackfont);
-	//m_gamePlayScreen.setup(m_ArialBlackfont);
+	m_levelScreen.setup(m_ArialBlackfont);
 }

@@ -1,5 +1,6 @@
 #include "Level.h"
-
+#include "Game.h"
+#include "GameStates.h"
 Level::Level()
 {
 }
@@ -10,11 +11,19 @@ Level::~Level()
 
 void Level::update(sf::Time t_deltaTime)
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	{
+		Game::m_currentMode = GameMode::LoseScreen;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
+	{
+		Game::m_currentMode = GameMode::WinScreen;
+	}
 }
 
 void Level::render(sf::RenderWindow & t_window)
 {
-	t_window.clear(sf::Color::Red);
+	t_window.clear(sf::Color::Black);
 	t_window.draw(m_message);
 	t_window.display();
 }

@@ -32,6 +32,6 @@ void Help::setup(sf::Font & t_font)
 	m_message.setFillColor(sf::Color::Blue);
 	m_message.setPosition(sf::Vector2f{ 50.0f,50.0f });
 	m_message.setCharacterSize(24u);
-	m_message.setString("Help");
+	m_message.setString("Use your mouse to drag and drop kids \n to complete the pattern and transmit \n motivation. Press backspace to return to main menu");
 	m_message.setFont(m_font);
 }

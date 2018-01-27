@@ -15,15 +15,16 @@ License::~License()
 void License::update(sf::Time t_deltaTime)
 {
 	m_timer+=1;
-	if (m_timer > 300)
+	if (m_timer > 30)
 	{
 		Game::m_currentMode = GameMode::SplashScreen;
 	}
 }
 
-void License::render(sf::RenderWindow & t_window)
+void License::render(sf::RenderWindow & t_window)//new
 {
 	t_window.clear(sf::Color::Yellow);
+	t_window.draw(m_sprite);
 	t_window.draw(m_message);
 	t_window.display();
 }
@@ -36,4 +37,11 @@ void License::setup(sf::Font & t_font)
 	m_message.setCharacterSize(24u);
 	m_message.setString("Made in c++ SFML");
 	m_message.setFont(m_font);
+
+	if (!m_texture.loadFromFile("ASSETS//IMAGES//SFML-LOGO.png"))
+	{
+		// simple error message if previous call fails
+		std::cout << "problem loading sprite" << std::endl;
+	}
+	m_sprite.setTexture(m_texture);
 }

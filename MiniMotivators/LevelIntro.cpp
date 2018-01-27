@@ -17,6 +17,10 @@ void LevelIntro::update(sf::Time t_deltaTime)
 	{
 		Game::m_currentMode = GameMode::MainMenuScreen;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		Game::m_currentMode = GameMode::LevelScreen;
+	}
 }
 
 void LevelIntro::render(sf::RenderWindow & t_window)

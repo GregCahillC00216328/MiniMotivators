@@ -10,6 +10,7 @@
 #include "Help.h"
 #include "Credits.h"
 #include "Options.h"
+#include "Lose.h"
 
 
 
@@ -45,6 +46,7 @@ private:
 	Help m_helpScreen;
 	Credits m_creditsScreen;
 	Options m_optionsScreen;
+	Lose m_loosingScreen;
 	//GamePlay m_gamePlayScreen; // gameplay object
 
 	sf::RenderWindow m_window; // main SFML window

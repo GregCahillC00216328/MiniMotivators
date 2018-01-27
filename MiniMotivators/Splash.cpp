@@ -37,7 +37,7 @@ void Splash::setup(sf::Font & t_font)
 	m_message.setString("'Looking'~Corita Kent\n pete was here \n press any key to go to menu");
 	m_message.setFont(m_font);
 
-	if (!m_texture.loadFromFile("ASSETS//CAPTURE.png"))
+	if (!m_texture.loadFromFile("ASSETS//Capture.PNG"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading sprite" << std::endl;

@@ -6,7 +6,7 @@
 // neede to initialise the gamemode
 // as this is static we need to initialise it outside of the methods
 // and need to refrence it using the class rather than via an istance
-GameMode Game::m_currentMode{ GameMode::LicenseScreen };
+GameMode Game::m_currentMode{ GameMode::LoseScreen };
 
 
 
@@ -100,6 +100,8 @@ void Game::update(sf::Time t_deltaTime)
 	case GameMode::CreditsScreen:
 		m_creditsScreen.update(t_deltaTime);
 		break;
+	case::GameMode::LoseScreen:
+		m_loosingScreen.update(t_deltaTime);
 	default:
 		break;
 	}
@@ -138,6 +140,8 @@ void Game::render()
 	case GameMode::CreditsScreen:
 		m_creditsScreen.render(m_window);
 		break;
+	case::GameMode::LoseScreen:
+		m_loosingScreen.render(m_window);
 	default:
 		break;
 	}
@@ -161,5 +165,6 @@ void Game::setupAssets()
 	m_helpScreen.setup(m_ArialBlackfont);
 	m_levelIntroScreen.setup(m_ArialBlackfont);
 	m_optionsScreen.setup(m_ArialBlackfont);
+	m_loosingScreen.setup(m_ArialBlackfont);
 	//m_gamePlayScreen.setup(m_ArialBlackfont);
 }

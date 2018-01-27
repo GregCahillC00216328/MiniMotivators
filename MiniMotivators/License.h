@@ -16,4 +16,6 @@ private:
 	sf::Font m_font;
 	sf::Text m_message;
 	int m_timer=0;
+	sf::Texture m_texture;
+	sf::Sprite m_sprite;
 };

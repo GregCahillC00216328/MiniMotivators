@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="Credits.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelIntro.cpp" />
@@ -36,7 +35,6 @@
   <ItemGroup>
     <ClInclude Include="Credits.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameStates.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="Level.h" />

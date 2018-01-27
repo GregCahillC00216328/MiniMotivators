@@ -15,7 +15,7 @@ License::~License()
 void License::update(sf::Time t_deltaTime)
 {
 	m_timer+=1;
-	if (m_timer > 300)
+	if (m_timer > 30)
 	{
 		Game::m_currentMode = GameMode::SplashScreen;
 	}

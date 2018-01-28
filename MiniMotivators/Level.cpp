@@ -151,13 +151,9 @@ void Level::setup(sf::Font & t_font)
 		m_sequenceSquares[i].setPosition(20 + 150 * i, 550);
 		m_sequenceSquares[i].setTexture(&m_kidTexture);
 	}
-	if (!m_backTexture.loadFromFile("ASSETS/IMAGES/game.jpg"))//load image and check for error
-	{
-		std::cout << "error with button file";//error message
-	}
 	m_backgroundSquare.setPosition(0, 0);
 	m_backgroundSquare.setSize(sf::Vector2f(800, 600));
-	m_backgroundSquare.setTexture(&m_backTexture);
+	m_backgroundSquare.setFillColor(sf::Color(128,128,128));
 }
 
 void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2f mouseLocation,sf::Window &t_window)

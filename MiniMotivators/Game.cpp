@@ -101,7 +101,7 @@ void Game::update(sf::Time t_deltaTime)
 		m_creditsScreen.update(t_deltaTime);
 		break;
 	case GameMode::LevelScreen:
-		m_levelScreen.update(t_deltaTime);
+		m_levelScreen.update(t_deltaTime, m_window);
 		break;
 	case GameMode::LoseScreen:
 		m_loseScreen.update(t_deltaTime);

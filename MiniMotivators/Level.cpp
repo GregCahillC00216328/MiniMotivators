@@ -9,7 +9,7 @@ Level::~Level()
 {
 }
 
-void Level::update(sf::Time t_deltaTime)
+void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
 	{
@@ -18,6 +18,18 @@ void Level::update(sf::Time t_deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
 	{
 		Game::m_currentMode = GameMode::WinScreen;
+	}
+
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))//if mouse left click
+	{
+		sf::Vector2i mouseLocation;//store mouse location in the windoww
+		mouseLocation = sf::Mouse::getPosition(t_window);//gets the mouse position from window
+		
+		for (int i = 0; i < 4; i++)
+		{
+			//m_mam[i].getGlobalBounds().intersects()
+		}
 	}
 }
 
@@ -49,7 +61,7 @@ void Level::setup(sf::Font & t_font)
 		std::cout << "error with button file";//error message
 	}
 
-	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.png"))//load image and check for error
+	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.pdn"))//load image and check for error
 	{
 		std::cout << "error with button file";//error message
 	}

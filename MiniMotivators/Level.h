@@ -6,7 +6,7 @@ class Level//Hi Greg
 public:
 	Level();
 	~Level();
-	void update(sf::Time t_deltaTime);
+	void update(sf::Time t_deltaTime, sf::Window &t_window);
 	void render(sf::RenderWindow &t_window);
 	void setup(sf::Font &t_font);
 private:

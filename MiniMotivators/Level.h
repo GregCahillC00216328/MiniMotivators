@@ -18,16 +18,17 @@ private:
 	sf::Texture m_mamTexture;
 	sf::Texture m_dadTexture;
 	sf::Texture m_shirtTexture;
-	sf::Texture m_mamTexture;
-	sf::Texture m_dadTexture;
 
-	sf::RectangleShape m_mam[4];
-	sf::RectangleShape m_dad[4];
-	sf::RectangleShape m_kid[4];
+	sf::RectangleShape m_mam[6];
+	sf::RectangleShape m_dad[6];
+	sf::RectangleShape m_kid[6];
 
-	sf::RectangleShape m_sequenceSquares[5]; //squares used to display sequence/missing kids
-	sf::RectangleShape m_fatherSquares[5];
-	sf::RectangleShape m_motherSquares[5];
-	sf::RectangleShape m_kidSquares[5];
-	sf::RectangleShape m_shirtSquare[5];
+	sf::RectangleShape m_sequenceSquares[4]; //squares used to display sequence/missing kids
+	sf::RectangleShape m_fatherSquares[6];
+	sf::RectangleShape m_motherSquares[6];
+	sf::RectangleShape m_kidSquares[6];
+	sf::RectangleShape m_shirtSquare[6];
+
+	sf::Color colourArray[10];
+	bool used[10];
 };

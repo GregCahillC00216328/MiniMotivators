@@ -57,14 +57,23 @@ void Game::processEvents()
 		{
 			m_window.close();
 		}
-		if (sf::Event::KeyPressed == event.type) //user key press
+		switch (m_currentMode)
 		{
-			if (sf::Keyboard::Escape == event.key.code)
+		case GameMode::LevelScreen:
+			m_levelScreen.processEvents(event, m_window);
+			break;
+		default:
+			break;
+			if (sf::Event::KeyPressed == event.type) //user key press
 			{
-				m_exitGame = true;
-				// need to change this as escape should pause
-				// or bring me back one level in the game not exit
-				// straight away
+				if (sf::Keyboard::Escape == event.key.code)
+				{
+
+					m_exitGame = true;
+					// need to change this as escape should pause
+					// or bring me back one level in the game not exit
+					// straight away
+				}
 			}
 		}
 	}

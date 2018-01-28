@@ -31,19 +31,8 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 		timer = 0;
 	}
 	timer++;
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))//if mouse left click
-	{
-		sf::Vector2i mouseLocation;//store mouse location in the windoww
-		mouseLocation = sf::Mouse::getPosition(t_window);//gets the mouse position from window
+	
 
-		for (int i = 0; i < 4; i++)
-		{
-			m_currentIndex = i;
-			mouseDetection(m_mam[i], static_cast<sf::Vector2f>(mouseLocation),t_window);
-			mouseDetection(m_dad[i], static_cast<sf::Vector2f>(mouseLocation),t_window);
-			mouseDetection(m_kid[i], static_cast<sf::Vector2f>(mouseLocation),t_window);
-		}
-	}
 	for (int i = 0; i < 4; i++)
 	{
 		
@@ -71,7 +60,24 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 		clicked[i] = false;
 	}
 
-	
+	if (!sf::Mouse::isButtonPressed)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			haveChild[i] = false;
+		}
+	}
+	if (inPlace[0] &&
+		inPlace[1] &&
+		inPlace[2] &&
+		inPlace[3])
+	{
+		Game::m_currentMode = GameMode::WinScreen;
+	}
+	if (timer > 3000)
+	{
+		Game::m_currentMode = GameMode::LoseScreen;
+	}
 }
 
 void Level::render(sf::RenderWindow & t_window)
@@ -165,6 +171,57 @@ void Level::setup(sf::Font & t_font)
 	m_backgroundSquare.setFillColor(sf::Color(128,128,128));
 }
 
+void Level::processEvents(sf::Event & t_event, sf::Window &t_window)
+{
+	
+	if (sf::Event::MouseButtonPressed == t_event.type) //user key press
+	{
+		sf::Vector2i mouseLocation;//store mouse location in the windoww
+		mouseLocation = sf::Mouse::getPosition(t_window);//gets the mouse position from window
+
+		for (int i = 0; i < 4; i++)
+		{
+			m_currentIndex = i;
+			mouseDetection(m_mam[i], static_cast<sf::Vector2f>(mouseLocation), t_window);
+			mouseDetection(m_dad[i], static_cast<sf::Vector2f>(mouseLocation), t_window);
+			mouseDetection(m_kid[i], static_cast<sf::Vector2f>(mouseLocation), t_window);
+		}
+	}
+	if (sf::Event::MouseMoved == t_event.type) //user key press
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (!inPlace[i])
+			{
+				if (haveChild[i])
+				{
+					m_kid[i].setPosition(sf::Vector2f(sf::Mouse::getPosition(t_window)));
+					m_shirtSquare[i].setPosition(sf::Vector2f(sf::Mouse::getPosition(t_window)));
+				}
+			}
+			
+		}
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (m_kid[i].getGlobalBounds().intersects(m_sequenceSquares[i].getGlobalBounds()))
+		{
+			inPlace[i] = true;
+		}
+	}
+	if (sf::Event::MouseButtonReleased==t_event.type)
+	{
+		
+		
+		haveChild[m_currentIndex] = false;
+	}
+	/*displacement.x = (((0) + (sf::Mouse::getPosition(t_window).x)) - t_rect.getPosition().x);
+	displacement.y = (((0) + (sf::Mouse::getPosition(t_window).y)) - t_rect.getPosition().y);*/
+	//t_rect.setPosition(sf::Mouse::getPosition(t_window).x, sf::Mouse::getPosition(t_window).y);
+	clicked[m_currentIndex] = true;
+	
+}
+
 void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2f mouseLocation,sf::Window &t_window)
 {
 	if (mouseLocation.x > t_rect.getPosition().x &&
@@ -185,14 +242,8 @@ void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2f mouseLocation,
 		if (t_rect.getTexture() == &m_kidTexture)
 		{
 			m_currentVoice = Voice::Baby;
-			displacement.x = (((0) + (sf::Mouse::getPosition(t_window).x))-t_rect.getPosition().x);
-			displacement.y = (((0) + (sf::Mouse::getPosition(t_window).y)) - t_rect.getPosition().y);
-			//t_rect.setPosition(sf::Mouse::getPosition(t_window).x, sf::Mouse::getPosition(t_window).y);
-			clicked[m_currentIndex] = true;
-			if (m_kid[m_currentIndex].getGlobalBounds().intersects(m_sequenceSquares[m_currentIndex].getGlobalBounds()))
-			{
-				inPlace[m_currentIndex] = true;
-			}
+			haveChild[m_currentIndex] = true;
+			
 		}
 		
 		

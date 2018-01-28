@@ -20,6 +20,7 @@ public:
 	void update(sf::Time t_deltaTime, sf::Window &t_window);
 	void render(sf::RenderWindow &t_window);
 	void setup(sf::Font &t_font);
+	void processEvents(sf::Event &t_event,sf::Window &t_window);
 	void mouseDetection(sf::RectangleShape t_rect, sf::Vector2f mouseLocation, sf::Window &t_window);
 	void movement(sf::RectangleShape &t_rect, sf::Vector2f t_moveVec);
 private:
@@ -42,7 +43,7 @@ private:
 	sf::Vector2f moveVec[4];
 	bool clicked[4]{ false,false,false,false };
 	bool inPlace[4]{ false,false,false,false };
-
+	bool haveChild[4] = { false,false,false,false };
 
 	
 	
@@ -53,4 +54,6 @@ private:
 	int m_currentIndex = 0;
 	Voice m_currentVoice{ Voice::Daddy };
 	sf::Vector2f displacement{0,0};
+	sf::RectangleShape m_backgroundSquare;
+	sf::Texture m_backTexture;
 };

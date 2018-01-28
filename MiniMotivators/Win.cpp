@@ -21,7 +21,7 @@ void Win::update(sf::Time t_deltaTime)
 
 void Win::render(sf::RenderWindow & t_window)
 {
-	t_window.clear(sf::Color::Yellow);
+	t_window.clear(sf::Color::Black);
 	t_window.draw(m_message);
 	t_window.display();
 }

@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 const int NO_OOHS = 26;
+const 
 enum class Voice
 {
 	Daddy,
@@ -19,7 +20,7 @@ public:
 	void update(sf::Time t_deltaTime, sf::Window &t_window);
 	void render(sf::RenderWindow &t_window);
 	void setup(sf::Font &t_font);
-	void mouseDetection(sf::RectangleShape t_rect, sf::Vector2i t_mouse);
+	void mouseDetection(sf::RectangleShape t_rect, sf::Vector2f mouseLocation, sf::Window &t_window);
 	void movement(sf::RectangleShape &t_rect, sf::Vector2f t_moveVec);
 private:
 	sf::Font m_font;
@@ -29,6 +30,7 @@ private:
 	sf::Texture m_mamTexture;
 	sf::Texture m_dadTexture;
 	sf::Texture m_shirtTexture;
+	sf::Color colourArray[10];
 	
 
 	sf::RectangleShape m_mam[4];
@@ -38,7 +40,7 @@ private:
 	sf::RectangleShape m_sequenceSquares[5]; //squares used to display sequence/missing kids
 	int timer = 300;
 	sf::Vector2f moveVec[4];
-
+	bool clicked[4]{ false,false,false,false };
 
 
 	

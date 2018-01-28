@@ -20,11 +20,29 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	{
 		Game::m_currentMode = GameMode::WinScreen;
 	}
-	timer++;
+	
 	if (timer = 300)
 	{
-		moveVec[4] = sf::Vector2f((rand() % 9 + 1) - 5, (rand() % 9 + 1) - 5);
+		for (int i = 0; i < 4; i++)
+		{
+			moveVec[i] = sf::Vector2f((rand() % 9 + 1) - 5, (rand() % 9 + 1) - 5);
+		}
+		
 		timer = 0;
+	}
+	timer++;
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))//if mouse left click
+	{
+		sf::Vector2i mouseLocation;//store mouse location in the windoww
+		mouseLocation = sf::Mouse::getPosition(t_window);//gets the mouse position from window
+
+		for (int i = 0; i < 4; i++)
+		{
+			m_currentIndex = i;
+			mouseDetection(m_mam[i], static_cast<sf::Vector2f>(mouseLocation),t_window);
+			mouseDetection(m_dad[i], static_cast<sf::Vector2f>(mouseLocation),t_window);
+			mouseDetection(m_kid[i], static_cast<sf::Vector2f>(mouseLocation),t_window);
+		}
 	}
 	for (int i = 0; i < 4; i++)
 	{
@@ -32,34 +50,29 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 		
 		movement(m_mam[i],moveVec[i]);
 		movement(m_dad[i], moveVec[i]);
-		movement(m_kid[i], moveVec[i]);
+		if (clicked[i] == false)
+		{
+			movement(m_kid[i], moveVec[i]);
+			movement(m_shirtSquare[i], moveVec[i]);
+		}
+		
+		clicked[i] = false;
 	}
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))//if mouse left click
-	{
-		sf::Vector2i mouseLocation;//store mouse location in the windoww
-		mouseLocation = sf::Mouse::getPosition(t_window);//gets the mouse position from window
-		
-		for (int i = 0; i < 4; i++)
-		{
-			m_currentIndex = i;
-			mouseDetection(m_mam[i],mouseLocation);
-			mouseDetection(m_dad[i], mouseLocation);
-			mouseDetection(m_kid[i], mouseLocation);
-		}
-	}
+	
 }
 
 void Level::render(sf::RenderWindow & t_window)
 {
 	t_window.clear(sf::Color::Black);
 	t_window.draw(m_message);
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		t_window.draw(m_mam[i]);
 		t_window.draw(m_dad[i]);
 		t_window.draw(m_kid[i]);
 		t_window.draw(m_shirtSquare[i]);
+
 	}
 	for (int i = 0; i < 4; i++)
 	{
@@ -70,6 +83,20 @@ void Level::render(sf::RenderWindow & t_window)
 
 void Level::setup(sf::Font & t_font)
 {
+
+	loadVoices();
+	colourArray[0] = sf::Color::Red;
+	colourArray[1] = sf::Color::Blue;
+	colourArray[2] = sf::Color::Yellow;
+	colourArray[3] = sf::Color::Green;
+	colourArray[4] = { 153, 51, 255 };
+	colourArray[5] = { 255, 128, 0 };
+	colourArray[6] = { 255, 0, 255 };
+	colourArray[7] = { 160, 160, 160 };
+	colourArray[8] = sf::Color::Magenta;
+	colourArray[9] = sf::Color::Cyan;
+
+
 	m_font = t_font;
 	m_message.setFillColor(sf::Color::Green);
 	m_message.setPosition(sf::Vector2f{ 50.0f,50.0f });
@@ -93,23 +120,13 @@ void Level::setup(sf::Font & t_font)
 	{
 		std::cout << "error with button file";//error message
 	}
-
-	srand(time(NULL));
-
-	for (int i = 0; i < 4; i++)
-	{
-		
-	}
-
 	srand(time(NULL));
 	for (int i = 0; i < 4; i++)
+
 	{
 		m_dad[i].setSize(sf::Vector2f(120, 100));
 		m_dad[i].setTexture(&m_dadTexture);
 		m_dad[i].setFillColor(sf::Color::Blue);
-
-		m_dad[i].setPosition(rand() % 600 + 50, rand() % 500);
-
 		m_dad[i].setPosition(rand()% 600 + 50, rand()%500);
 
 
@@ -124,9 +141,7 @@ void Level::setup(sf::Font & t_font)
 		m_kid[i].setPosition(m_dad[i].getPosition().x + 70, m_dad[i].getPosition().y);
 
 		m_shirtSquare[i].setSize(sf::Vector2f(60, 80));
-		m_shirtSquare[i].setTexture(&m_shirtTexture);
-
-		
+		m_shirtSquare[i].setTexture(&m_shirtTexture);		
 		m_shirtSquare[i].setFillColor(colourArray[rand()%10]);
 		m_shirtSquare[i].setPosition(m_kid[i].getPosition().x, m_kid[i].getPosition().y);
 
@@ -135,9 +150,10 @@ void Level::setup(sf::Font & t_font)
 		m_sequenceSquares[i].setPosition(20 + 150 * i, 550);
 		m_sequenceSquares[i].setTexture(&m_kidTexture);
 	}
+
 }
 
-void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2i mouseLocation)
+void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2f mouseLocation,sf::Window &t_window)
 {
 	if (mouseLocation.x > t_rect.getPosition().x &&
 		mouseLocation.x < t_rect.getPosition().x + t_rect.getGlobalBounds().width &&
@@ -157,6 +173,8 @@ void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2i mouseLocation)
 		if (t_rect.getTexture() == &m_kidTexture)
 		{
 			m_currentVoice = Voice::Baby;
+			t_rect.setPosition(sf::Mouse::getPosition(t_window).x, sf::Mouse::getPosition(t_window).y);
+			clicked[m_currentIndex] = true;
 		}
 		
 		

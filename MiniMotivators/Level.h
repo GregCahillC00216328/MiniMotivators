@@ -18,6 +18,8 @@ private:
 	sf::Texture m_mamTexture;
 	sf::Texture m_dadTexture;
 	sf::Texture m_shirtTexture;
+	sf::Texture m_mamTexture;
+	sf::Texture m_dadTexture;
 
 	sf::RectangleShape m_mam[4];
 	sf::RectangleShape m_dad[4];

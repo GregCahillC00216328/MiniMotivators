@@ -59,6 +59,7 @@ void MainMenu::update(sf::Time t_deltaTime, sf::Window &t_window)
 void MainMenu::render(sf::RenderWindow & t_window)
 {
 	t_window.clear(sf::Color::Black);
+	t_window.draw(backgroundSquare);
 	for (int i = 0; i < m_optionCount; i++)
 	{
 		//draw buttons and text
@@ -109,4 +110,12 @@ void MainMenu::setup(sf::Font & t_font)
 		sf::Vector2u textureSize = m_buttonTexture[i].getSize();//gets size for scale
 		m_buttonSprites[i].setScale(m_buttonWidth / textureSize.x, m_buttonHeight / textureSize.y);//sets scale
 	}
+
+	if (!m_background.loadFromFile("ASSETS/IMAGES/main.jpg"))//load image and check for error
+	{
+		std::cout << "error with button file";//error message
+	}
+	backgroundSquare.setPosition(0, 0);
+	backgroundSquare.setSize(sf::Vector2f(800, 600));
+	backgroundSquare.setTexture(&m_background);
 }

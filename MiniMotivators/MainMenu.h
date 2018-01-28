@@ -20,6 +20,9 @@ private:
 	/// array of sprites used to display buttons
 	sf::Sprite m_buttonSprites[m_optionCount];
 
+	sf::Texture m_background;
+	sf::RectangleShape backgroundSquare;
+
 	/// top left of area usde for menu
 	float m_topOffset;
 	/// top left of area usde for menu

@@ -51,4 +51,7 @@ private:
 	void loadVoices();
 	int m_currentIndex = 0;
 	Voice m_currentVoice{ Voice::Daddy };
+
+	sf::RectangleShape m_backgroundSquare;
+	sf::Texture m_backTexture;
 };

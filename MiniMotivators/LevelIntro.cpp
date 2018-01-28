@@ -36,6 +36,6 @@ void LevelIntro::setup(sf::Font & t_font)
 	m_message.setFillColor(sf::Color::Blue);
 	m_message.setPosition(sf::Vector2f{ 50.0f,50.0f });
 	m_message.setCharacterSize(24u);
-	m_message.setString("level intro");
+	m_message.setString("Use the mouse to grab the kids \n and match them with the sequence at \n the bottom before time runs out");
 	m_message.setFont(m_font);
 }

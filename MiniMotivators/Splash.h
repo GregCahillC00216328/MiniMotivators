@@ -13,5 +13,5 @@ private:
 	sf::Font m_font;
 	sf::Text m_message;
 	sf::Texture m_texture;
-	sf::Sprite m_sprite;
+	sf::RectangleShape m_sprite;
 };

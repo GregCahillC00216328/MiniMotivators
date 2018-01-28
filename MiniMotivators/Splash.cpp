@@ -37,10 +37,12 @@ void Splash::setup(sf::Font & t_font)//k
 	m_message.setString("'Fuck the mainstream'\n press any key to go to menu");
 	m_message.setFont(m_font);
 
-	if (!m_texture.loadFromFile("ASSETS//Capture.PNG"))
+	if (!m_texture.loadFromFile("ASSETS//IMAGES//abduction.png"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading sprite" << std::endl;
 	}
-	m_sprite.setTexture(m_texture);
+	m_sprite.setPosition(0, 0);
+	m_sprite.setSize(sf::Vector2f(800, 600));
+	m_sprite.setTexture(&m_texture);
 }

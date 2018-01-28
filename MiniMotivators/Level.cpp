@@ -61,41 +61,46 @@ void Level::setup(sf::Font & t_font)
 		std::cout << "error with button file";//error message
 	}
 
-	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.pdn"))//load image and check for error
+	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.png"))//load image and check for error
+	{
+		std::cout << "error with button file";//error message
+	}
+	if (!m_mamTexture.loadFromFile("ASSETS/IMAGES/mam.png"))//load image and check for error
+	{
+		std::cout << "error with button file";//error message
+	}
+	if (!m_dadTexture.loadFromFile("ASSETS/IMAGES/dad.png"))//load image and check for error
 	{
 		std::cout << "error with button file";//error message
 	}
 
 	srand(time(NULL));
+
 	for (int i = 0; i < 4; i++)
 	{
-		m_dad[i].setSize(sf::Vector2f(45, 45));
+		m_dad[i].setSize(sf::Vector2f(120, 100));
+		m_dad[i].setTexture(&m_dadTexture);
 		m_dad[i].setFillColor(sf::Color::Blue);
-		m_dad[i].setPosition(rand()% 700 + 50, rand()%500);
+		m_dad[i].setPosition(rand()% 600 + 50, rand()%500);
 
-		m_mam[i].setSize(sf::Vector2f(40, 40));
-		//m_mam[i].setTexture()
+		m_mam[i].setSize(sf::Vector2f(120, 100));
+		m_mam[i].setTexture(&m_mamTexture);
 		m_mam[i].setFillColor(sf::Color::Red);
-		m_mam[i].setPosition(m_dad[i].getPosition().x - 25, m_dad[i].getPosition().y);
+		m_mam[i].setPosition(m_dad[i].getPosition().x - 100, m_dad[i].getPosition().y);
 
 		m_kid[i].setSize(sf::Vector2f(60, 80));
 		m_kid[i].setTexture(&m_kidTexture);
 		m_kid[i].setFillColor(sf::Color::Green);
-		m_kid[i].setPosition(0 + 90 * i, 350);
+		m_kid[i].setPosition(m_dad[i].getPosition().x + 70, m_dad[i].getPosition().y);
 		
-		m_shirtSquare[i].setSize(sf::Vector2f(30, 40));
+		m_shirtSquare[i].setSize(sf::Vector2f(60, 80));
 		m_shirtSquare[i].setTexture(&m_shirtTexture);
 		m_shirtSquare[i].setFillColor(sf::Color::Red);
-		m_shirtSquare[i].setPosition(m_kid[i].getPosition().x, m_kid[i].getPosition().y - m_kidSprite.getGlobalBounds().height / 3 * 2);
+		m_shirtSquare[i].setPosition(m_kid[i].getPosition().x, m_kid[i].getPosition().y);
 
-
-		//m_sequenceSquares[i].setSize(sf::Vector2f(40, 40));
-		//m_sequenceSquares[i].setFillColor(sf::Color::Red);
-		//m_sequenceSquares[i].setPosition(20 + 150 * i, 550);
-		////m_sequenceSquares[i].setTexture()
-
-		//m_fatherSquares[i].setSize(sf::Vector2f(50, 50));
-		////	m_fatherSquares[i].setPosition();
-
+		m_sequenceSquares[i].setSize(sf::Vector2f(60, 80));
+		m_sequenceSquares[i].setFillColor(sf::Color::Red);
+		m_sequenceSquares[i].setPosition(20 + 150 * i, 550);
+		m_sequenceSquares[i].setTexture(&m_kidTexture);
 	}
 }

@@ -23,7 +23,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	
 	if (timer = 300)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < MAX_PEOPLE; i++)
 		{
 			moveVec[i] = sf::Vector2f((rand() % 9 + 1) - 5, (rand() % 9 + 1) - 5);
 		}
@@ -34,7 +34,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	timer2 += 1;
 	
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i <MAX_PEOPLE; i++)
 	{
 		
 		
@@ -63,7 +63,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 
 	if (!sf::Mouse::isButtonPressed)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < MAX_PEOPLE; i++)
 		{
 			haveChild[i] = false;
 		}
@@ -78,6 +78,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	if (timer2 > 2000)
 	{
 		Game::m_currentMode = GameMode::LoseScreen;
+		timer2 = 0;
 	}
 }
 
@@ -86,12 +87,16 @@ void Level::render(sf::RenderWindow & t_window)
 	t_window.clear(sf::Color::Black);
 	t_window.draw(m_backgroundSquare);
 	t_window.draw(m_message);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i <MAX_PEOPLE; i++)
 	{
 		t_window.draw(m_mam[i]);
 		t_window.draw(m_dad[i]);
 		t_window.draw(m_kid[i]);
 		t_window.draw(m_shirtSquare[i]);
+	
+	}
+	for (int i = 0; i < 4; i++)
+	{
 		t_window.draw(m_sequenceSquares[i]);
 	}
 	
@@ -138,7 +143,7 @@ void Level::setup(sf::Font & t_font)
 		std::cout << "error with button file";//error message
 	}
 	srand(time(NULL));
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < MAX_PEOPLE; i++)
 
 	{
 		m_dad[i].setSize(sf::Vector2f(120, 100));
@@ -162,10 +167,15 @@ void Level::setup(sf::Font & t_font)
 		m_shirtSquare[i].setFillColor(colourArray[rand()%10]);
 		m_shirtSquare[i].setPosition(m_kid[i].getPosition().x, m_kid[i].getPosition().y);
 
+		
+	}
+	for (size_t i = 0; i < 4; i++)
+	{
 		m_sequenceSquares[i].setSize(sf::Vector2f(60, 80));
 		m_sequenceSquares[i].setFillColor(m_shirtSquare[i].getFillColor());
 		m_sequenceSquares[i].setPosition(20 + 150 * i, 550);
 		m_sequenceSquares[i].setTexture(&m_kidTexture);
+
 	}
 	m_backgroundSquare.setPosition(0, 0);
 	m_backgroundSquare.setSize(sf::Vector2f(800, 600));
@@ -180,7 +190,7 @@ void Level::processEvents(sf::Event & t_event, sf::Window &t_window)
 		sf::Vector2i mouseLocation;//store mouse location in the windoww
 		mouseLocation = sf::Mouse::getPosition(t_window);//gets the mouse position from window
 
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < MAX_PEOPLE; i++)
 		{
 			m_currentIndex = i;
 			mouseDetection(m_mam[i], static_cast<sf::Vector2f>(mouseLocation), t_window);
@@ -190,7 +200,7 @@ void Level::processEvents(sf::Event & t_event, sf::Window &t_window)
 	}
 	if (sf::Event::MouseMoved == t_event.type) //user key press
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < MAX_PEOPLE; i++)
 		{
 			if (!inPlace[i])
 			{

@@ -4,7 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 const int NO_OOHS = 26;
-const 
+const int MAX_PEOPLE = 12;
+
 enum class Voice
 {
 	Daddy,
@@ -34,17 +35,17 @@ private:
 	sf::Color colourArray[10];
 	
 
-	sf::RectangleShape m_mam[4];
-	sf::RectangleShape m_dad[4];
-	sf::RectangleShape m_kid[4];
-	sf::RectangleShape m_shirtSquare[4];
+	sf::RectangleShape m_mam[MAX_PEOPLE];
+	sf::RectangleShape m_dad[MAX_PEOPLE];
+	sf::RectangleShape m_kid[MAX_PEOPLE];
+	sf::RectangleShape m_shirtSquare[MAX_PEOPLE];
 	sf::RectangleShape m_sequenceSquares[5]; //squares used to display sequence/missing kids
 	int timer = 300;
 	int timer2 = 300;
-	sf::Vector2f moveVec[4];
-	bool clicked[4]{ false,false,false,false };
-	bool inPlace[4]{ false,false,false,false };
-	bool haveChild[4] = { false,false,false,false };
+	sf::Vector2f moveVec[12];
+	bool clicked[12]{ false,false,false,false };
+	bool inPlace[12]{ false,false,false,false };
+	bool haveChild[12] = { false,false,false,false };
 
 	
 	

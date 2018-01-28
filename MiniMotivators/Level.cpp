@@ -28,7 +28,9 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 		
 		for (int i = 0; i < 4; i++)
 		{
-			//m_mam[i].getGlobalBounds().intersects()
+			mouseDetection(m_mam[i],mouseLocation);
+			mouseDetection(m_dad[i], mouseLocation);
+			mouseDetection(m_kid[i], mouseLocation);
 		}
 	}
 }
@@ -61,7 +63,7 @@ void Level::setup(sf::Font & t_font)
 		std::cout << "error with button file";//error message
 	}
 
-	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.pdn"))//load image and check for error
+	if (!m_shirtTexture.loadFromFile("ASSETS/IMAGES/tShirt.png"))//load image and check for error
 	{
 		std::cout << "error with button file";//error message
 	}
@@ -97,5 +99,17 @@ void Level::setup(sf::Font & t_font)
 		//m_fatherSquares[i].setSize(sf::Vector2f(50, 50));
 		////	m_fatherSquares[i].setPosition();
 
+	}
+}
+
+void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2i mouseLocation)
+{
+	if (mouseLocation.x > t_rect.getPosition().x &&
+		mouseLocation.x < t_rect.getPosition().x + t_rect.getGlobalBounds().width &&
+		mouseLocation.y > t_rect.getPosition().y &&
+		mouseLocation.y < t_rect.getPosition().y + t_rect.getGlobalBounds().height)
+	{
+		//Play appropriate sound here
+		std::cout << "Test" << std::endl << std::endl;
 	}
 }

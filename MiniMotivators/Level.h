@@ -9,6 +9,7 @@ public:
 	void update(sf::Time t_deltaTime, sf::Window &t_window);
 	void render(sf::RenderWindow &t_window);
 	void setup(sf::Font &t_font);
+	void mouseDetection(sf::RectangleShape t_rect, sf::Vector2i t_mouse);
 private:
 	sf::Font m_font;
 	sf::Text m_message;

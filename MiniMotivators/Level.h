@@ -40,6 +40,7 @@ private:
 	sf::RectangleShape m_shirtSquare[4];
 	sf::RectangleShape m_sequenceSquares[5]; //squares used to display sequence/missing kids
 	int timer = 300;
+	int timer2 = 300;
 	sf::Vector2f moveVec[4];
 	bool clicked[4]{ false,false,false,false };
 	bool inPlace[4]{ false,false,false,false };

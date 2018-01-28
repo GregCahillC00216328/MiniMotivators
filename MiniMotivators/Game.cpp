@@ -191,4 +191,5 @@ void Game::setupAssets()
 	m_levelScreen.setup(m_ArialBlackfont);
 	m_loseScreen.setup(m_ArialBlackfont);
 	m_loseScreen.setup(m_ArialBlackfont);
+	m_winScreen.setup(m_ArialBlackfont);
 }

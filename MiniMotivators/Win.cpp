@@ -13,10 +13,7 @@ Win::~Win()
 
 void Win::update(sf::Time t_deltaTime)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-
-	}
+	
 }
 
 void Win::render(sf::RenderWindow & t_window)

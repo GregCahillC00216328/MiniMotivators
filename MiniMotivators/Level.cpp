@@ -30,7 +30,8 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 		
 		timer = 0;
 	}
-	timer++;
+	timer+=1;
+	timer2 += 1;
 	
 
 	for (int i = 0; i < 4; i++)
@@ -74,7 +75,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	{
 		Game::m_currentMode = GameMode::WinScreen;
 	}
-	if (timer > 3000)
+	if (timer2 > 2000)
 	{
 		Game::m_currentMode = GameMode::LoseScreen;
 	}

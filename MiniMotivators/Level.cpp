@@ -23,7 +23,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	
 	if (timer = 300)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 6; i++)
 		{
 			moveVec[i] = sf::Vector2f((rand() % 9 + 1) - 5, (rand() % 9 + 1) - 5);
 		}
@@ -34,7 +34,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	timer2 += 1;
 	
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		
 		
@@ -75,7 +75,7 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 	{
 		Game::m_currentMode = GameMode::WinScreen;
 	}
-	if (timer2 > 2000)
+	if (timer2 > 800)
 	{
 		Game::m_currentMode = GameMode::LoseScreen;
 	}

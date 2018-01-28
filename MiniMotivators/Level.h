@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 const int NO_OOHS = 26;
+
 const 
 enum class Voice
 {

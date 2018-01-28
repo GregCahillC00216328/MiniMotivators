@@ -54,20 +54,22 @@ void Level::render(sf::RenderWindow & t_window)
 {
 	t_window.clear(sf::Color::Black);
 	t_window.draw(m_message);
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		t_window.draw(m_mam[i]);
 		t_window.draw(m_dad[i]);
 		t_window.draw(m_kid[i]);
-		t_window.draw(m_sequenceSquares[i]);
 		t_window.draw(m_shirtSquare[i]);
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		t_window.draw(m_sequenceSquares[i]);
 	}
 	t_window.display();
 }
 
 void Level::setup(sf::Font & t_font)
 {
-	loadVoices();
 	m_font = t_font;
 	m_message.setFillColor(sf::Color::Green);
 	m_message.setPosition(sf::Vector2f{ 50.0f,50.0f });
@@ -92,8 +94,14 @@ void Level::setup(sf::Font & t_font)
 		std::cout << "error with button file";//error message
 	}
 
-	
-	
+	srand(time(NULL));
+
+	for (int i = 0; i < 4; i++)
+	{
+		
+	}
+
+	srand(time(NULL));
 	for (int i = 0; i < 4; i++)
 	{
 		m_dad[i].setSize(sf::Vector2f(120, 100));
@@ -117,15 +125,15 @@ void Level::setup(sf::Font & t_font)
 
 		m_shirtSquare[i].setSize(sf::Vector2f(60, 80));
 		m_shirtSquare[i].setTexture(&m_shirtTexture);
-		m_shirtSquare[i].setFillColor(sf::Color::Red);
+
+		
+		m_shirtSquare[i].setFillColor(colourArray[rand()%10]);
 		m_shirtSquare[i].setPosition(m_kid[i].getPosition().x, m_kid[i].getPosition().y);
 
-
 		m_sequenceSquares[i].setSize(sf::Vector2f(60, 80));
-		m_sequenceSquares[i].setFillColor(sf::Color::Red);
+		m_sequenceSquares[i].setFillColor(m_shirtSquare[i].getFillColor());
 		m_sequenceSquares[i].setPosition(20 + 150 * i, 550);
 		m_sequenceSquares[i].setTexture(&m_kidTexture);
-
 	}
 }
 

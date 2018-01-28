@@ -50,10 +50,22 @@ void Level::update(sf::Time t_deltaTime, sf::Window &t_window)
 		
 		movement(m_mam[i],moveVec[i]);
 		movement(m_dad[i], moveVec[i]);
-		if (clicked[i] == false)
+		if (!inPlace[i])
 		{
-			movement(m_kid[i], moveVec[i]);
-			movement(m_shirtSquare[i], moveVec[i]);
+			if (clicked[i] == false)
+			{
+				movement(m_kid[i], moveVec[i]);
+				movement(m_shirtSquare[i], moveVec[i]);
+			}
+			if (clicked[i])
+			{
+				displacement.x = ((displacement.x ) * (rand() % 2) - 1)*0.2;
+				displacement.x = ((displacement.y ) * (rand() % 2) - 1)*0.2;
+				m_kid[i].setPosition(m_kid[i].getPosition() + displacement);
+				m_shirtSquare[i].setPosition(m_shirtSquare[i].getPosition() + displacement);
+
+
+			}
 		}
 		
 		clicked[i] = false;
@@ -72,12 +84,9 @@ void Level::render(sf::RenderWindow & t_window)
 		t_window.draw(m_dad[i]);
 		t_window.draw(m_kid[i]);
 		t_window.draw(m_shirtSquare[i]);
-
-	}
-	for (int i = 0; i < 4; i++)
-	{
 		t_window.draw(m_sequenceSquares[i]);
 	}
+	
 	t_window.display();
 }
 
@@ -173,8 +182,14 @@ void Level::mouseDetection(sf::RectangleShape t_rect,sf::Vector2f mouseLocation,
 		if (t_rect.getTexture() == &m_kidTexture)
 		{
 			m_currentVoice = Voice::Baby;
-			t_rect.setPosition(sf::Mouse::getPosition(t_window).x, sf::Mouse::getPosition(t_window).y);
+			displacement.x = (((0) + (sf::Mouse::getPosition(t_window).x))-t_rect.getPosition().x);
+			displacement.y = (((0) + (sf::Mouse::getPosition(t_window).y)) - t_rect.getPosition().y);
+			//t_rect.setPosition(sf::Mouse::getPosition(t_window).x, sf::Mouse::getPosition(t_window).y);
 			clicked[m_currentIndex] = true;
+			if (m_kid[m_currentIndex].getGlobalBounds().intersects(m_sequenceSquares[m_currentIndex].getGlobalBounds()))
+			{
+				inPlace[m_currentIndex] = true;
+			}
 		}
 		
 		
@@ -197,6 +212,10 @@ void Level::movement(sf::RectangleShape &t_rect, sf::Vector2f t_moveVec)
 		t_moveVec.y = t_moveVec.y*-1;
 	}
 	t_rect.setPosition(t_rect.getPosition() + t_moveVec);
+	if (t_rect.getPosition().y > 300)
+	{
+		t_rect.setPosition(t_rect.getPosition().x, t_rect.getPosition().y - 5);
+	}
 }
 
 void Level::playOoh(int t_index, Voice t_voice)

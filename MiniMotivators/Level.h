@@ -41,6 +41,7 @@ private:
 	int timer = 300;
 	sf::Vector2f moveVec[4];
 	bool clicked[4]{ false,false,false,false };
+	bool inPlace[4]{ false,false,false,false };
 
 
 	
@@ -51,4 +52,5 @@ private:
 	void loadVoices();
 	int m_currentIndex = 0;
 	Voice m_currentVoice{ Voice::Daddy };
+	sf::Vector2f displacement{0,0};
 };
